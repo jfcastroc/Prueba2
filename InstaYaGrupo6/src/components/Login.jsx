@@ -1,4 +1,6 @@
 import '../App.css'
+import './Registrar'
+import  {ListaOrdenes } from './ListaOrdenes'
 export function Login() {
     return (
     <>
@@ -8,7 +10,7 @@ export function Login() {
                         <div class="col-3">
                             <div class="row">
                                 <div class="col-12">
-                                    <image src="./images/Logo.png" alt="Logo" class="w-100"/>
+                                    <image src="../images/Logo.png" alt="Logo" class="w-100"/>
                                 </div>
                                 <div class="col-12 text-center">
                                     <h5 class="text-blue fs-6">Gestión de paquetes</h5>
@@ -22,7 +24,7 @@ export function Login() {
                                 <a class="nav-link active" aria-current="page" href="#">Iniciar sesión</a>
                                 </li>
                                 <li class="nav-item">
-                                <a class="nav-link" href="#">Registrarse</a>
+                                <a class="nav-link" href={"./Registrar"}>Registrarse</a>
                                 </li>
                             </ul>
                         </div>
