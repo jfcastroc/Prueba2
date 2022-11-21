@@ -8,7 +8,7 @@ export function CrearOrdenes() {
                 <div class="col-3">
                     <div class="row">
                         <div class="col-12">
-                            <img src="../Images/Logo.png" alt="Logo" class="w-100"/>
+                            <img src="../images/Logo.png" alt="Logo" class="w-100"/>
                         </div>
                         <div class="col-12 text-center">
                             <h5 class="text-blue fs-6">Gestión de paquetes</h5>
