@@ -1,0 +1,25 @@
+section {
+  height: 500px;
+  overflow-y: auto;
+}
+
+.text-blue {
+  color:rgb(91,195,230)
+}
+
+.text-blue-dark {
+  color:rgb(38,38,50)
+}
+
+.bg-blue-dark {
+  background-color: rgb(38,38,50)
+}
+
+.bg-default {
+  background-color: rgb(51,65,85);
+}
+
+.fs-icon-login{
+  font-size: 100px;
+  color:rgb(91,195,230);
+}
