@@ -1,7 +1,56 @@
 import '../App.css'
 import { NavbarLoginRegister } from './NavbarLoginRegister';
+import { useState } from 'react';
+import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
+    const navigate = useNavigate();
+    const [loginInfo,setLoginInfo] = useState({
+        email: "",
+        password: ""
+    });
+
+    function handleChange(evt){
+        const { target } = evt;
+        const { name, value } = target;
+    
+        const newValues = {
+            ...loginInfo,
+            [name]: value, 
+        };
+    
+        setLoginInfo(newValues);
+    }
+
+    function handleSubmit(evt){
+        const url = "http://localhost:9000/api/users/login";
+
+        const config = {
+            headers:{
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            }
+        };
+        
+        const data = {
+            email:loginInfo.email, 
+            password:loginInfo.password,
+        };
+
+        Axios.post(url,data,config)
+        .then((res) =>{
+            console.log(res)
+            debugger;
+            if (res.status === 200 && res.data.login === 'Ok') {
+                navigate("/listaOrdenes");
+            }else{
+                alert(res.data.Error);
+            }
+        }).catch((err) =>{console.log(err)});
+        evt.preventDefault();
+    }
+
     return (
     <>
         <NavbarLoginRegister/>
@@ -11,14 +60,14 @@ export function Login() {
                 <div className="text-center">
                     <i className="bi bi-person-circle fs-icon-login"></i>
                 </div>
-                <form className="px-5">
+                <form className="px-5" method='POST' onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">Correo electronico</label>
-                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' value={loginInfo.email} onChange={handleChange} required/>
                     </div>
                     <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">Contraseña</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1"/>
+                        <label htmlFor="exampleInputPassword1" className="form-label">Contraseña</label>
+                        <input type="password" className="form-control" id="exampleInputPassword1" name='password' value={loginInfo.password} onChange={handleChange} required/>
                     </div>
                     <div className="row justify-content-center">
                         <button type="submit" className="btn btn-primary w-50">Ingresar</button>
