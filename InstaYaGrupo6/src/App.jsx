@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import reactLogo from './assets/react.svg'
