@@ -19,7 +19,7 @@ export function CrearOrdenes() {
         numIdentificacionDestinatario: "",
         direccionEntrega: "",
         ciudadEntrega: "",
-        estado: "Creado",
+        estado: "Guardado",
     });
     function handleChange(evt){
         const { target } = evt;

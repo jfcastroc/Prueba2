@@ -58,7 +58,7 @@ export function ListaOrdenes() {
                             <td className='col-2'>{orden.ciudadEntrega}</td>
                             <td className='col-2'>{orden.direccionEntrega}</td>
                             <td className='col-2'>{orden.estado}</td>
-                            <td className='col-2'><a href={"./actualizarOrdenes"} className="btn btn-secondary"><i className="bi bi-pencil-square"></i> Editar</a></td>
+                            <td className='col-2'><a href={"./actualizarOrdenes?id="+orden._id} className="btn btn-secondary"><i className="bi bi-pencil-square"></i> Editar</a></td>
                           </tr>
                         ))}
                       </tbody>
