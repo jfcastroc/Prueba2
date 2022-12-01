@@ -26,7 +26,7 @@ export function ActualizarOrdenes() {
 
     useEffect(()=>
     {
-        const url = "http://localhost:9000/api/orders";
+        const url = "http://localhost:9000/api/orders/id";
         const config = {
             "Content-Type": "application/json",
             "Accept": "application/json",
