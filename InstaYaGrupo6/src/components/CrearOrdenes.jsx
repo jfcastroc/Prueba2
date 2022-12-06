@@ -36,13 +36,11 @@ export function CrearOrdenes() {
     function handleSubmit(evt){
         const url = "http://localhost:9000/api/orders"; 
 
-        const config = {
-            headers:{
-                "Access-Control-Allow-Origin":"*",
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            }
-        };        
+        const headers = {
+            "x-access-token" : localStorage.getItem("accessToken"),
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          };     
 
         const data = {
             fecha: orderInfo.fecha,
@@ -61,10 +59,10 @@ export function CrearOrdenes() {
             
         };
 
-        Axios.post(url,data,config)
+        Axios.post(url,data,{headers: headers})
         .then((res) =>{
             console.log(res)
-            if (res.status === 200 && res.data.message === undefined) {
+            if (res.status === 200) {
                 alert("Orden creada con exito. ")
                 navigate("/ListaOrdenes");
             }else{

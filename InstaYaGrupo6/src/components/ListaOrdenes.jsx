@@ -2,30 +2,31 @@ import { useState, useEffect } from 'react';
 import '../App.css'
 import { NavbarOrdenes } from './NavbarOrdenes';
 import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 export function ListaOrdenes() {
   const [listaOrdenes, setListaOrdenes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>
     {
       const url = "http://localhost:9000/api/orders";
-      const config = {
+      const headers = {
+        "x-access-token" : localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
         "Accept": "application/json",
       };
-
-      Axios.get(url,config)
+      Axios.get(url,{headers: headers})
       .then((res) =>{
-        console.log(res);
+        debugger;
         if (res.status === 200) {
-          setListaOrdenes(res.data);
+            setListaOrdenes(res.data);
         }
         else{
           alert("Ocurrio un error");
         }
-        
-    });
+      });
     },[setListaOrdenes]);
 
     return (

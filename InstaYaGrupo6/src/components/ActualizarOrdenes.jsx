@@ -27,16 +27,17 @@ export function ActualizarOrdenes() {
     useEffect(()=>
     {
         const url = "http://localhost:9000/api/orders/id";
-        const config = {
+        const headers = {
+            "x-access-token" : localStorage.getItem("accessToken"),
             "Content-Type": "application/json",
             "Accept": "application/json",
-        };
+          };  
 
         const data = {
             id:searchParams.get("id")
         }
         console.log(data)
-        Axios.post(url,data,config)
+        Axios.post(url,data,{headers: headers})
         .then((res) =>{
             console.log(res);
             if (res.status === 200) {
@@ -64,13 +65,11 @@ export function ActualizarOrdenes() {
     function handleSubmit(evt){
         const url = "http://localhost:9000/api/orders/update"; 
 
-        const config = {
-            headers:{
-                "Access-Control-Allow-Origin":"*",
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            }
-        };        
+        const headers = {
+            "x-access-token" : localStorage.getItem("accessToken"),
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          };         
 
         const data = {
             fecha: datosOrden.fecha,
@@ -88,10 +87,10 @@ export function ActualizarOrdenes() {
             estado:datosOrden.estado,
         };
         console.log(data)
-        Axios.post(url,data,config)
+        Axios.post(url,data,{headers: headers})
         .then((res) =>{
             console.log(res)
-            if (res.status === 200 && res.data.message === undefined) {
+            if (res.status === 200) {
                 alert("Orden actualizada con exito. ")
                 navigate("/ListaOrdenes");
             }else{

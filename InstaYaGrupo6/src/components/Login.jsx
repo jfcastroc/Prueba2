@@ -29,7 +29,7 @@ export function Login() {
         const config = {
             headers:{
                 "Content-Type": "application/json",
-                "Accept": "application/json",
+                "Accept": "application/json"
             }
         };
         
@@ -40,14 +40,19 @@ export function Login() {
 
         Axios.post(url,data,config)
         .then((res) =>{
-            console.log(res)
-            debugger;
-            if (res.status === 200 && res.data.login === 'Ok') {
+            if (res.status === 200 && res.data.mensaje === 'Autenticación correcta') {
                 navigate("/listaOrdenes");
+                localStorage.setItem("accessToken", res.data.token);
             }else{
                 alert(res.data.Error);
             }
-        }).catch((err) =>{console.log(err)});
+        }).catch((err) =>{
+            debugger;
+            if(err.response.status === 401){
+                alert('El usuario o la contraseña son incorrectos');
+            }else{
+                console.log(err)
+            }});
         evt.preventDefault();
     }
 
