@@ -11,4 +11,4 @@ RUN npm install
 # añadimos la app
 COPY . ./
 # iniciamos la app
-CMD ["npm", "start"]
+CMD ["npm", "run dev"]
